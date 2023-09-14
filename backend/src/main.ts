@@ -4,13 +4,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { PrismaService } from './prisma/prisma.service';
 import * as express from 'express';
-import { Logger } from "@nestjs/common";
-
+import { Logger } from '@nestjs/common';
 
 function bootstrapSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
-    .setTitle('Yummytakeaways BackEnd API')
-    .setDescription('yummytakeaways new website version 1.0')
+    .setTitle('Todo BackEnd API')
+    .setDescription('Todo new website version 1.0')
     .setVersion('1.0.0')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
@@ -20,7 +19,6 @@ function bootstrapSwagger(app: INestApplication) {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 }
-
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -43,9 +41,6 @@ async function bootstrap() {
 
   await app.listen(8888);
   Logger.log(`Listened on PORT ${process.env.PORT}`);
-
 }
 
 bootstrap();
-
-
