@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useEffect} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Background from '../components/Background';
 import Logo from '../components/Logo';
@@ -9,6 +9,8 @@ import BackButton from '../components/BackButton';
 import {theme} from '../core/theme';
 import {emailValidator, passwordValidator} from '../core/utils';
 import {Navigation} from '../types';
+import {login} from '../store/auth/actions';
+import {useDispatch, useSelector} from 'react-redux';
 
 type Props = {
   navigation: Navigation;
@@ -17,6 +19,20 @@ type Props = {
 const LoginScreen = ({navigation}: Props) => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
+  const {user, error, loggedIn} = useSelector(
+    (state: any) => state.authReducer,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (loggedIn) {
+      if (!error) {
+        navigation.navigate('Dashboard');
+      } else {
+        // global.showErrorToast('Error', 'Invalid username or password')
+      }
+    }
+  }, [user, error, loggedIn]);
 
   const _onLoginPressed = () => {
     const emailError = emailValidator(email.value);
@@ -28,7 +44,12 @@ const LoginScreen = ({navigation}: Props) => {
       return;
     }
 
-    navigation.navigate('Dashboard');
+    dispatch(
+      login({
+        Email: email.value,
+        Password: password.value,
+      }),
+    );
   };
 
   return (
@@ -61,13 +82,6 @@ const LoginScreen = ({navigation}: Props) => {
         errorText={password.error}
         secureTextEntry
       />
-
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-          <Text style={styles.label}>Forgot your password?</Text>
-        </TouchableOpacity>
-      </View>
 
       <Button mode="contained" onPress={_onLoginPressed}>
         Login
