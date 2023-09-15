@@ -1,4 +1,5 @@
 import apiInstance from './apiInstance';
+import {TodoType} from '../screens/Dashboard';
 
 export interface TodoInfoType {
   userId: number;
@@ -11,12 +12,12 @@ export interface TodoInfoType {
 const createTodo = (todoInfo: TodoInfoType) =>
   apiInstance.post('/tasks', todoInfo);
 
-const getTodos = (userId: number) => apiInstance.post(`/tasks/:${userId}`);
+const getTodos = (userId: number) => apiInstance.get(`/tasks/${userId}`);
 
-const updateTodo = (todoInfo: TodoInfoType, todoId: number) =>
-  apiInstance.put(`/tasks/:${todoId}`, todoInfo);
+const updateTodo = (todo: TodoType) =>
+  apiInstance.put(`/tasks/${todo.id}`, todo);
 
-const deleteTodo = (todoId: number) => apiInstance.delete(`/tasks/:${todoId}`);
+const deleteTodo = (todoId: number) => apiInstance.delete(`/tasks/${todoId}`);
 
 export default {
   createTodo,

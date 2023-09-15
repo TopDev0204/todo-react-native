@@ -36,3 +36,8 @@ export const signupSuccess = (user: any) => ({
 export const signupFailed = () => ({
   type: AuthTypes.SIGNUP_FAILED,
 });
+
+export const storeUserInfo = (userInfo: any) => ({
+  type: AuthTypes.STORE_USERINFO,
+  payload: userInfo,
+});

@@ -6,11 +6,19 @@ export enum AuthTypes {
   LOGIN_SUCCESS = '@@login/LOGIN_SUCCESS',
   LOGIN_FAILED = '@@login/LOGIN_FAILED',
   LOGOUT = '@@login/LOGOUT',
-  LOGOUT_SUCCESS = 'LOGOUT_SUCCESS',
+  LOGOUT_SUCCESS = '@@LOGOUT_SUCCESS',
+  STORE_USERINFO = '@@STORE_USERINFO',
+}
+
+interface UserType {
+  id: number;
+  Username: string;
+  Email: string;
+  Password: string;
 }
 
 export interface LoginState {
-  user: any;
+  user: UserType | null;
   loggedIn: boolean;
   loading: boolean;
   error: boolean;

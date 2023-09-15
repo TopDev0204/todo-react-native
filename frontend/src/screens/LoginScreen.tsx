@@ -10,6 +10,8 @@ import {emailValidator, passwordValidator} from '../core/utils';
 import {Navigation} from '../types';
 import {login} from '../store/auth/actions';
 import {useDispatch, useSelector} from 'react-redux';
+import {storeUserInfo} from '../store/actions';
+import userStorage from '../lib/user/storage';
 
 type Props = {
   navigation: Navigation;
@@ -22,6 +24,18 @@ const LoginScreen = ({navigation}: Props) => {
     (state: any) => state.authReducer,
   );
   const dispatch = useDispatch();
+
+  const checkAuthUser = async () => {
+    const loginUser = await userStorage.getUser();
+    if (loginUser !== null) {
+      dispatch(storeUserInfo(loginUser));
+      navigation.navigate('Dashboard');
+    }
+  };
+
+  useEffect(() => {
+    checkAuthUser();
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {

@@ -1,37 +1,53 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TodoItem = ({ todo, onPressComplete, onPressRemove }) => {
-  const isCompleted = todo.status === 'c';
-  const isIncomplete = todo.status === 'i';
+const TodoItem = ({todo, onPressComplete, onPressRemove}: any) => {
+  const isCompleted = todo.Completed === true;
+  const isIncomplete = todo.Completed === false;
   return (
     <TouchableOpacity style={styles.container}>
-      <View style={{}}>
+      <View>
         <Text
           style={[
             styles.todoText,
             {
-              textDecorationLine: isCompleted ? 'line-through' : 'none'
-            }
-          ]}
-        >
-          {todo.todoText}
+              textDecorationLine: isCompleted ? 'line-through' : 'none',
+            },
+          ]}>
+          {todo.Title}
         </Text>
+        <View>
+          <Text
+            style={[
+              styles.todoText,
+              {
+                textDecorationLine: isCompleted ? 'line-through' : 'none',
+              },
+            ]}>
+            {todo.Description}
+          </Text>
+          <Text
+            style={[
+              styles.todoText,
+              {
+                textDecorationLine: isCompleted ? 'line-through' : 'none',
+              },
+            ]}>
+            {todo.dueDate}
+          </Text>
+        </View>
       </View>
       {isIncomplete && (
         <View style={styles.btnGroup}>
           <TouchableOpacity
             onPress={() => onPressComplete(todo)}
-            style={[styles.btnContainer, { backgroundColor: '#92d04e' }]}
-          >
+            style={[styles.btnContainer, {backgroundColor: '#92d04e'}]}>
             <Icon size={15} name={'check'} color={'#fff'} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => onPressRemove(todo)}
-            style={styles.btnContainer}
-          >
+            style={styles.btnContainer}>
             <Icon size={15} name={'times'} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -40,8 +56,7 @@ const TodoItem = ({ todo, onPressComplete, onPressRemove }) => {
         <View style={styles.btnGroup}>
           <TouchableOpacity
             onPress={() => onPressRemove(todo)}
-            style={styles.btnContainer}
-          >
+            style={styles.btnContainer}>
             <Icon size={15} name={'times'} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -60,7 +75,7 @@ const styles = StyleSheet.create({
     borderColor: '#f8bc45',
     backgroundColor: '#f8bc45',
     borderWidth: 1.5,
-    marginVertical: 10
+    marginVertical: 10,
   },
   btnContainer: {
     padding: 7,
@@ -70,15 +85,15 @@ const styles = StyleSheet.create({
     marginRight: 10,
     backgroundColor: 'rgb(232, 73, 70)',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   btnGroup: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   todoText: {
     color: 'black',
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default TodoItem;

@@ -4,7 +4,6 @@ import Background from '../components/Background';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
-import BackButton from '../components/BackButton';
 import {theme} from '../core/theme';
 import {Navigation} from '../types';
 import {useDispatch, useSelector} from 'react-redux';
@@ -26,20 +25,21 @@ const CreateTodo = ({navigation}: Props) => {
 
   const _onCreate = () => {
     dispatch(
-      createTodo({
-        userId: user.id,
-        Title: title,
-        Description: description,
-        Completed: false,
-        dueDate: dueDate.toLocaleDateString(),
-      }),
+      createTodo(
+        {
+          userId: user.id,
+          Title: title,
+          Description: description,
+          Completed: false,
+          dueDate: dueDate.toLocaleDateString(),
+        },
+        navigation,
+      ),
     );
   };
 
   return (
     <Background>
-      <BackButton goBack={() => navigation.navigate('Dashboard')} />
-
       <Header>Create a new Task</Header>
 
       <TextInput

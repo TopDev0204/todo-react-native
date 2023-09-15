@@ -1,10 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  HttpException,
-  HttpStatus,
-  BadRequestException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Tasks } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -12,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class TasksService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async createTask(taskData) {
+  async createTask(taskData: any) {
     const task = await this.prismaService.tasks.create({
       data: taskData,
     });

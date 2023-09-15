@@ -59,6 +59,11 @@ const authReducer = (state = INIT_STATE, action: any) => {
         loading: false,
         user: null,
       };
+    case AuthTypes.STORE_USERINFO:
+      return {
+        ...state,
+        user: action.payload,
+      };
 
     default:
       return state;

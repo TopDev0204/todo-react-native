@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
-import {find, propEq, keys, has, assoc} from 'ramda';
 import TodoList from '../components/TodoList';
-import NewTodo from '../components/NewTodo';
-import Footer from '../components/Footer';
 import {Navigation} from '../types';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTodos} from '../store/todo/actions';
+import {getTodos, deleteTodo, updateTodo} from '../store/todo/actions';
 
-interface TodoType {
+export interface TodoType {
   id: number;
   userId: number;
   Title: string;
@@ -22,52 +19,21 @@ type Props = {
 };
 
 const Dashboard = ({navigation}: Props) => {
-  const [todos, setTodos] = useState<TodoType[]>([]);
-  const [newTodoValue, setNewTodoValue] = useState('');
   const dispatch = useDispatch();
+  const {todos} = useSelector((state: any) => state.todoReducer);
   const {user} = useSelector((state: any) => state.authReducer);
 
   useEffect(() => {
-    dispatch(getTodos());
+    dispatch(getTodos(user.id));
   }, []);
 
   const handleComplete = (todo: TodoType) => {
-    const todoToUpdate = find(propEq('id', todo.id))(todos);
-    const hasStatusProp = has('status')(todoToUpdate);
-
-    if (keys(todoToUpdate).length > 0 && hasStatusProp) {
-      const updatedTodo = assoc('status', 'c')(todoToUpdate);
-      const updatedTodoList = todos.map((t: TodoType) => {
-        if (t.id === todo.id) return updatedTodo;
-        return t;
-      });
-      setTodos(updatedTodoList);
-    } else {
-      throw new Error('Todo not found');
-    }
+    todo.Completed = true;
+    dispatch(updateTodo(todo));
   };
 
   const handleRemove = (todo: TodoType) => {
-    const updatedTodos = todos.filter((t: TodoType) => t.id !== todo.id);
-    setTodos(updatedTodos);
-  };
-
-  const handleOnAddNewTodo = () => {
-    if (newTodoValue.length < 5) {
-      Alert.alert('Empty Todo', 'Enter at least 4 or more characters!');
-      return;
-    }
-    const newTodo: TodoType = {
-      id: todos.length + 1,
-      userId: 1,
-      Title: newTodoValue,
-      Description: '',
-      Completed: false,
-      dueDate: new Date(),
-    };
-
-    setTodos([...todos, newTodo]);
-    setNewTodoValue('');
+    dispatch(deleteTodo(todo.id, navigation));
   };
 
   return (
@@ -80,31 +46,23 @@ const Dashboard = ({navigation}: Props) => {
         }}>
         <TouchableOpacity
           style={{
-            backgroundColor: '#fff',
+            backgroundColor: '#198',
             padding: 15,
             borderRadius: 8,
             justifyContent: 'center',
             alignItems: 'center',
           }}
           onPress={() => navigation.navigate('CreateTodo')}>
-          <Text style={{fontFamily: 'FiraCode-Regular'}}>
-            Create a new todo!
+          <Text style={{fontFamily: 'FiraCode-Regular', color: 'white'}}>
+            Create Task
           </Text>
         </TouchableOpacity>
-      </View>
-      <View style={{margin: 20}}>
-        <NewTodo
-          onChangeNewTodoText={(newVal: string) => setNewTodoValue(newVal)}
-          newTodoValue={newTodoValue}
-          onAddNewTodo={handleOnAddNewTodo}
-        />
       </View>
       <TodoList
         data={todos}
         onPressRemove={handleRemove}
         onPressComplete={handleComplete}
       />
-      <Footer />
     </View>
   );
 };
