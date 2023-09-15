@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 import Background from '../components/Background';
-import Logo from '../components/Logo';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Paragraph from '../components/Paragraph';
@@ -12,7 +11,6 @@ type Props = {
 
 const HomeScreen = ({navigation}: Props) => (
   <Background>
-    <Logo />
     <Header>Todo App</Header>
 
     <Paragraph>Please login</Paragraph>

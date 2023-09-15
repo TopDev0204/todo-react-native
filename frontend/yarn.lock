@@ -1698,6 +1698,13 @@
     "prompts" "^2.4.0"
     "semver" "^7.5.2"
 
+"@react-native-community/datetimepicker@>=6.7.0":
+  "integrity" "sha512-nwMje384ib8017P4phJ1v+Y9xkTEGiilV2uoGjFqCNhMFUeBG7kaVy9WKfS1Y0joDlOk4BISm3+3AP4Es5lYZQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/datetimepicker/-/datetimepicker-7.5.0.tgz"
+  "version" "7.5.0"
+  dependencies:
+    "invariant" "^2.2.4"
+
 "@react-native/assets-registry@^0.72.0":
   "integrity" "sha512-Im93xRJuHHxb1wniGhBMsxLwcfzdYreSZVQGDoMJgkd6+Iky61LInGEHnQCTN0fKNYF1Dvcofb4uMmE1RQHXHQ=="
   "resolved" "https://registry.npmjs.org/@react-native/assets-registry/-/assets-registry-0.72.0.tgz"
@@ -5968,6 +5975,11 @@
   dependencies:
     "inherits" "~2.0.3"
 
+"ramda@^0.29.0":
+  "integrity" "sha512-BBea6L67bYLtdbOqfp8f58fPMqEwx0doL+pAi8TZyp2YWz8R9G8z9x75CZI8W+ftqhFHCpEX2cRnUUXK130iKA=="
+  "resolved" "https://registry.npmjs.org/ramda/-/ramda-0.29.0.tgz"
+  "version" "0.29.0"
+
 "range-parser@~1.2.1":
   "integrity" "sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg=="
   "resolved" "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
@@ -6011,6 +6023,18 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
+"react-native-date-picker@^4.3.2":
+  "integrity" "sha512-K+CY0PE29r5CviAq5YNGEZ2rk0CUvxge83AjCO59vYc2T5rF8j8dcqudjg+q/hRSxVt29uhIGajzKblNl32n9Q=="
+  "resolved" "https://registry.npmjs.org/react-native-date-picker/-/react-native-date-picker-4.3.2.tgz"
+  "version" "4.3.2"
+
+"react-native-modal-datetime-picker@^17.1.0":
+  "integrity" "sha512-jfTwfaCLtBffYbQ+pOGFLM+J5HmUh3vb9rT0JrrQPjxzecdc8pNYreB1c96+mVuq8bDCvaCdIeuEsslTqLJL0Q=="
+  "resolved" "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-17.1.0.tgz"
+  "version" "17.1.0"
+  dependencies:
+    "prop-types" "^15.7.2"
+
 "react-native-paper@^5.10.4":
   "integrity" "sha512-cXXMUrYnT5wUl1Vv8HJKJg/XyRkUWKqmkk6lPszHZHQDSXaRrcwRaRaEl7C6ER5ZYIZmvzEIVDLMtH73TM7a/Q=="
   "resolved" "https://registry.npmjs.org/react-native-paper/-/react-native-paper-5.10.4.tgz"
@@ -6046,7 +6070,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.72 || 1000.0.0", "react-native@>=0.59", "react-native@0.72.4":
+"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.72 || 1000.0.0", "react-native@>= 0.64.3", "react-native@>=0.59", "react-native@>=0.65.0", "react-native@0.72.4":
   "integrity" "sha512-+vrObi0wZR+NeqL09KihAAdVlQ9IdplwznJWtYrjnQ4UbCW6rkzZJebRsugwUneSOKNFaHFEo1uKU89HsgtYBg=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.72.4.tgz"
   "version" "0.72.4"
@@ -6122,7 +6146,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.23.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>=16.3.0", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>= 17.0.1", "react@>=16.3.0", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
